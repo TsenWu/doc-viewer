@@ -14,6 +14,7 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/libs/pdf.worker.min.js';
     </script>
     <script src="js/flipbook.min.js"></script>
+    <script src="js/flipbook.webgl.min.js"></script>
     <style>
         html, body { margin: 0; padding: 0; height: 100%; background-color: #222222; overflow: hidden; display: flex; flex-direction: column; }
         #page-header { height: 60px; background-color: #1a1a1a; display: flex; align-items: center; padding-left: 20px; border-bottom: 1px solid #333; flex-shrink: 0; }
@@ -38,6 +39,9 @@
             new FlipBook(el, {
                 // 完美保留您的 PDF，文字搜尋功能滿血復活！
                 pdfUrl: 'test.pdf', 
+
+                // 新增腳本基礎路徑，引導程式正確定位 js 資料夾
+                scriptBasePath: 'js/',
                 
                 // 🎯 關鍵：提供本地端的繁體中文字體庫，沒有這個，遇到中文必定轉圈卡死
                 cMapUrl: 'assets/cmaps/',
@@ -48,7 +52,7 @@
                 disableStream: true,
 
                 // 維持最順暢的 3D 模式
-                viewMode: '3d',
+                viewMode: '2d',
                 skin: 'dark',
                 
                 // 實用功能全開 (放大鏡搜尋按鈕啟動！)
