@@ -14,18 +14,20 @@
     pdfUrl: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf',
     pdfWorkerSrc: './js/libs/pdf.worker.min.js',
     
-    // --- 關鍵穩定性設定 ---
-    viewMode: 'webgl',         // 如果 webgl 還是白屏，請改試 'swipe'
-    singlePageMode: false,     // 確保雙頁模式正常啟動
+    // --- 診斷測試：暫時關閉文字層 ---
+    // 如果關閉後圖片出現了，就代表是文字層變成了白牆蓋住了圖片
+    textLayer: false, 
     
-    // --- 徹底切斷伺服器依賴 (防止 check.php 干擾) ---
-    deepLinking: false,        // 暫時關閉網址頁碼同步，排除干擾
-    webgl: true,
+    // --- 換一種顯示模式試試看 ---
+    // 'css' 模式通常比 'canvas' 更穩定，雖然效能稍低但相容性最強
+    renderType: 'css', 
     
-    // --- 渲染優化 ---
-    cMapUrl: './assets/cmaps/',
-    cMapPacked: true,
-    renderType: 'canvas'       // 強制畫布渲染，這對圖像版 PDF 最友善
+    // 確保關閉 PHP 驗證
+    checkUrl: '', 
+    
+    // 解決層級問題
+    webgl: false,
+    viewMode: 'swipe' // 換成最基礎的滑動模式測試渲染
 });
 });
         </script>
@@ -33,6 +35,22 @@
         <style>
             body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #333; }
             #container { width: 100%; height: 100vh; }
+            /* 強制讓文字層背景透明，確保下方的畫布能透出來 */
+.flipbook-textLayer {
+    background-color: transparent !important;
+}
+
+/* 確保畫布（Canvas）不會被隱藏 */
+.flipbook-page-canvas {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 避免 GitHub Pages 的某些預設背景干擾 */
+#container {
+    background-color: #333 !important; /* 換成深色背景更容易看出白色頁面在哪 */
+}
         </style>
     </head>
 
