@@ -11,15 +11,22 @@
             document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('container');
     new FlipBook(el, {
-        pdfUrl: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf',
-        // 必須明確指定 Worker 的位置，否則引擎會因為找不到助手而畫不出圖
-        pdfWorkerSrc: './js/libs/pdf.worker.min.js', 
-        // 即使是圖像版 PDF，有時也需要這行來初始化渲染環境
-        cMapUrl: './assets/cmaps/',
-        cMapPacked: true,
-        // 增加容錯率
-        disableCanvasSideBySide: true 
-    });
+    pdfUrl: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf',
+    pdfWorkerSrc: './js/libs/pdf.worker.min.js',
+    
+    // --- 關鍵穩定性設定 ---
+    viewMode: 'webgl',         // 如果 webgl 還是白屏，請改試 'swipe'
+    singlePageMode: false,     // 確保雙頁模式正常啟動
+    
+    // --- 徹底切斷伺服器依賴 (防止 check.php 干擾) ---
+    deepLinking: false,        // 暫時關閉網址頁碼同步，排除干擾
+    webgl: true,
+    
+    // --- 渲染優化 ---
+    cMapUrl: './assets/cmaps/',
+    cMapPacked: true,
+    renderType: 'canvas'       // 強制畫布渲染，這對圖像版 PDF 最友善
+});
 });
         </script>
         
