@@ -11,7 +11,7 @@
             document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('container');
     new FlipBook(el, {
-        pdfUrl: './test2.pdf',
+        pdfUrl: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf',
         // 必須明確指定 Worker 的位置，否則引擎會因為找不到助手而畫不出圖
         pdfWorkerSrc: './js/libs/pdf.worker.min.js', 
         // 即使是圖像版 PDF，有時也需要這行來初始化渲染環境
