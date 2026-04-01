@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>金鍏電子 - 互動式產品型錄</title>
+
+    <link rel="stylesheet" href="css/flipbook.min.css" />
+    <script src="js/flipbook.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        html, body {
+            margin: 0; padding: 0; height: 100%;
+            background-color: #222222; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+        #page-header {
+            height: 60px; background-color: #1a1a1a;
+            display: flex; align-items: center; padding-left: 20px;
+            box-sizing: border-box; border-bottom: 1px solid #333; flex-shrink: 0;
+        }
+        #custom-logo { height: 40px; width: auto; }
+        #container { flex-grow: 1; width: 100vw; position: relative; }
+    </style>
+</head>
+
+<body>
+    <div id="page-header">
+        <a href="https://www.goldenwayled.com/" target="_blank">
+            <img id="custom-logo" src="GW_logo_W.png" alt="Goldenway Logo">
+        </a>
+    </div>
+
+    <div id="container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('container');
+
+            new FlipBook(el, {
+                pdfUrl: 'test.pdf', 
+                
+                // GitHub Pages 環境非常乾淨，讓引擎自己去找工人即可！
+                
+                viewMode: '3d',
+                skin: 'dark',
+                
+                deeplinkingPrefix: 'page_',
+                btnSearch: { enabled: true },
+                btnDownloadPdf: { enabled: true },
+                btnPrint: { enabled: true },
+                
+                pageRoughness: 0.8,
+                lightIntensity: 0.7,
+                menuBackground: 'rgba(51, 51, 51, 0.9)',
+                btnColor: '#ffffff',
+                btnBackground: 'transparent',
+                btnMargin: 0,
+                sideBtnBackground: 'rgba(0,0,0,0.3)',
+                sideBtnColor: '#ffffff',
+
+                strings: {
+                    print: '列印',
+                    printLeftPage: '列印左頁',
+                    printRightPage: '列印右頁',
+                    printCurrentPage: '列印本頁',
+                    printAllPages: '列印全部',
+                    download: '下載',
+                    downloadLeftPage: '下載左頁',
+                    downloadRightPage: '下載右頁',
+                    downloadCurrentPage: '下載本頁',
+                    downloadAllPages: '下載全部型錄',
+                    bookmarks: '書籤',
+                    bookmarkLeftPage: '加入左頁書籤',
+                    bookmarkRightPage: '加入右頁書籤',
+                    bookmarkCurrentPage: '加入本頁書籤',
+                    search: '搜尋',
+                    findInDocument: '在型錄中搜尋...',
+                    pagesFoundContaining: '找到符合結果的頁面：',
+                    thumbnails: '總覽縮圖',
+                    tableOfContent: '目錄',
+                    share: '分享',
+                    pressEscToClose: '按 ESC 鍵關閉',
+                }
+            });
+        });
+    </script>
+</body>
+</html>
