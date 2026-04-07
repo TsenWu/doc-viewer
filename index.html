@@ -3,67 +3,57 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoldenWay - 互動型錄專業版</title>
+    <title>Final Recovery Test</title>
 
     <link rel="stylesheet" href="./css/flipbook.min.css" />
     <script src="./js/flipbook.min.js"></script>
 
     <style>
-        /* 1. 舞台背景設定 */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #2c2c2c !important; }
-        #container { width: 100%; height: 100vh; }
+        /* 1. 強制背景為黑色，如果頁面是白的，一眼就能看出是誰在擋 */
+        body, html { margin: 0; padding: 0; background-color: #000 !important; }
+        #container { width: 100%; height: 100vh; background-color: #000 !important; }
 
-        /* 2. 強制破除原廠 CSS 的白牆設定 */
+        /* 2. 暴力破解：移除原廠 CSS 裡所有的白底 */
         .flipbook-wrapper, 
         .flipbook-page3, 
         .flipbook-page-html,
-        .flipbook-page-content {
+        .flipbook-page-content,
+        .flipbook-main-wrapper {
             background: transparent !important;
             background-color: transparent !important;
             box-shadow: none !important;
         }
 
-        /* 3. 強制讓畫布圖像顯現 */
+        /* 3. 強制畫布顯示：這是圖像所在層 */
         .flipbook-page-canvas, canvas {
             display: block !important;
             visibility: visible !important;
             opacity: 1 !important;
-            z-index: 1 !important;
-            background-color: #ffffff !important; /* 確保畫布底色是白的 */
-        }
-
-        /* 4. 修正文字層：確保透明且位於最前供選取 */
-        .flipbook-textLayer {
-            opacity: 1 !important;
-            background: transparent !important;
-            z-index: 10 !important;
-            pointer-events: auto !important;
+            z-index: 5 !important;
+            background-color: #ffffff !important; /* 只有這裡允許是白的 */
         }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 這是最安全的初始化方式
             new FlipBook(document.getElementById('container'), {
-                // 指向您的 PDF 檔案
-                pdfUrl: 'testA.pdf', 
+                pdfUrl: './2023_GW_Greenhouse_Gas_Inventory_Report.pdf', 
                 pdfWorkerSrc: './js/libs/pdf.worker.min.js',
                 
-                // --- 靜態環境必備設定：封鎖 check.php ---
-                checkUrl: 'none', 
+                // --- 徹底禁用所有可能導致崩潰的伺服器檢查 ---
+                checkUrl: 'javascript:void(0)', // 強制阻斷 check.php 請求
                 disableCheck: true,
                 
-                // --- 恢復原廠高級 3D 模式 ---
-                viewMode: 'webgl', 
-                renderType: 'html',
-                textLayer: true, // 恢復文字搜尋與選取
+                // --- 使用最穩定的渲染路徑 ---
+                viewMode: 'swipe',     // 先用最簡單的滑動模式，排除 3D 運算錯誤
+                renderType: 'canvas', 
+                textLayer: true,       // 保留您要的文字功能
                 
-                // --- 相容性優化 ---
+                // --- 其他必要設定 ---
                 cMapUrl: './assets/cmaps/',
                 cMapPacked: true,
-                webgl: true,
-                
-                // 關閉深度連結排除干擾
-                deepLinking: false 
+                webgl: false           // 暫時關閉 WebGL，排除顯示卡相容性
             });
         });
     </script>
