@@ -17,32 +17,26 @@
             // options 物件：集中管理所有外掛參數
             const options = {
                 // --- 1. 核心檔案與授權 ---
-                // 指定要載入的 PDF 檔案路徑 (相對路徑)
                 pdfUrl: './2023_GW_Greenhouse_Gas_Inventory_Report.pdf', 
-                // 外掛正版授權碼：【目前維持註釋狀態，排除 AdGuard 對授權請求的攔截】
+                // 授權碼目前維持註釋，確保測試環境單純
                 // purchaseCode: '0a7fab87-ae7d-4e64-8f9b-c589835f37a7',
                 
-                // --- 2. 穩定渲染引擎 (防崩潰與效能優化) ---
-                // PDF.js 核心引擎來源：使用本地路徑，避免跨網域被廣告阻擋器攔截
+                // --- 2. 穩定渲染引擎 ---
+                // 使用本地端的 Worker 引擎，確保不被跨網域攔截
                 pdfWorkerSrc: './js/libs/pdf.worker.min.js',
+                
                 // 關閉本地端 PHP 檢查
                 checkUrl: '', 
                 disableCheck: true,
                 
-                // 【核心修正 A】：切換回 'canvas' 模式。搭配下方關閉文字層，能讓內容最不容易被擋。
+                // 【極致精簡模式】：Canvas 繪圖 + 關閉文字層，這是對抗 AdGuard 最強的組合
                 renderType: 'canvas',
-                
-                // 瀏覽模式：
-                // 【核心修正 B】：維持 'swipe' 水平滑動。這是最穩定的模式，避開 WebGL 可能被攔截的風險。
                 viewMode: 'swipe',
+                textLayer: false, // 關閉文字方塊，避免被當成惡意追蹤腳本
                 
                 // 單頁模式設定
                 singlePageMode: false, 
                 singlePageModeMobile: true, 
-
-                // 【核心修正 C】：設為 false。
-                // 這會移除您看到的「黃色方塊」。雖然暫時不能選取文字，但這是繞過 AdGuard 攔截圖片的最佳方法。
-                textLayer: false, 
                 
                 // 中文字體修復機制
                 disableFontFace: true, 
@@ -86,94 +80,84 @@
     <style>
         /* --- A. 基礎畫布設定 --- */
         body, html {
-            margin: 0; padding: 0; /* 消除瀏覽器預設的白邊 */
-            overflow: hidden; /* 鎖死網頁本身的滾動條，全部交由電子書內部滑動 */
-            background-color: #333 !important; /* 設定網頁最底層的顏色為深灰色 */
-            height: 100% !important; /* 強制佔滿螢幕高度 */
+            margin: 0; padding: 0; 
+            overflow: hidden; 
+            background-color: #333 !important; 
+            height: 100% !important; 
         }
         
-        /* 承載電子書的容器，設定為滿版寬高 */
         #container { width: 100%; height: 100vh; }
         
-        /* 強制 Canvas (實際渲染 PDF 畫面的畫布) 顯示設定 */
         canvas { 
             display: block !important; 
             visibility: visible !important; 
-            /* 讓書本後方的背景色也是深灰色 (#494949)，與外圍的 #333 形成微小的層次感 */
             background-color: #494949 !important; 
         }
 
-        /* --- B. 頂部中央 Logo 區塊 (獨立懸浮層) --- */
+        /* --- B. 頂部中央 Logo 區塊 --- */
         .top-center-logo {
-            position: absolute; /* 絕對定位，使其脫離常規排版，懸浮於畫面上方 */
-            top: 15px; /* 距離頂部 15px，對齊左上角的頁碼標籤 */
-            left: 50%; /* 推到畫面一半的距離 */
-            transform: translateX(-50%); /* 往回拉自身寬度的一半，達成完美的絕對置中 */
-            background-color: rgba(0, 0, 0, 0.7); /* 70% 不透明度的純黑底色 */
-            padding: 6px 20px; /* 內邊距：上下 6px，左右 20px，撐開背景框 */
-            border-radius: 4px; /* 4px 圓角，使邊緣不那麼銳利 */
-            z-index: 150; /* 確保圖層順序在電子書之上 (外掛預設層級約 100 左右) */
-            
-            /* 【核心技巧】指標事件穿透：讓滑鼠點擊不會被此區塊攔截，保證能點到下方的書本進行翻頁 */
+            position: absolute; 
+            top: 15px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding: 6px 20px; 
+            border-radius: 4px; 
+            z-index: 150; 
             pointer-events: none; 
-            
-            display: flex; align-items: center; justify-content: center; /* 讓內部的圖片精準置中 */
+            display: flex; align-items: center; justify-content: center; 
         }
-        /* Logo 圖片本身的控制 */
+        
         .top-center-logo img { 
-            height: 22px; /* 鎖定視覺高度，寬度(auto)會依比例自動縮放 */
+            height: 22px; 
             display: block; 
         }
 
-        /* --- C. RWD 響應式設計 (針對手機與小螢幕優化) --- */
-        /* 當螢幕寬度小於 768px (平板/手機尺寸) 時，觸發以下樣式縮小 Logo 體積 */
+        /* --- C. RWD 響應式設計 --- */
         @media (max-width: 768px) {
-            .top-center-logo { top: 10px; padding: 4px 15px; } /* 減少上方距離與內邊距 */
-            .top-center-logo img { height: 16px; } /* 將 Logo 高度縮小，避免佔據過多手機閱讀空間 */
+            .top-center-logo { top: 10px; padding: 4px 15px; } 
+            .top-center-logo img { height: 16px; } 
         }
 
-        /* --- D. 左上角頁碼標籤 (外觀覆寫) --- */
+        /* --- D. 左上角頁碼標籤 --- */
         .flipbook-currentPage {
-            background-color: rgba(0, 0, 0, 0.7) !important; /* 統一為 70% 不透明度黑底 */
-            color: #ffffff !important; /* 白色字體 */
+            background-color: rgba(0, 0, 0, 0.7) !important; 
+            color: #ffffff !important; 
             padding: 6px 15px !important;
             border-radius: 4px !important;
-            top: 15px !important; /* 與頂部 Logo 的高度完美對齊 */
+            top: 15px !important; 
             left: 15px !important;
-            font-family: Arial, sans-serif !important; /* 使用乾淨的無襯線字體 */
+            font-family: Arial, sans-serif !important; 
             font-size: 14px !important;
             z-index: 100 !important;
         }
 
-        /* --- E. 底部全寬漸層工具列 (結構重塑) --- */
+        /* --- E. 底部全寬漸層工具列 --- */
         .flipbook-menu-bottom {
-            /* 繪製由上往下的漸層：從 80% 黑過渡到純黑，創造立體底座感 */
             background: linear-gradient(to top, rgba(40,40,40,0.8) 0%, rgba(0,0,0,1) 100%) !important;
-            height: 60px !important; /* 固定高度為 60px */
-            width: 100% !important; /* 強制佔滿左右寬度，破除外掛預設的短版設計 */
+            height: 60px !important; 
+            width: 100% !important; 
             left: 0 !important;
-            display: flex !important; align-items: center !important; justify-content: center !important; /* 將內部所有按鈕擠在正中間 */
+            display: flex !important; align-items: center !important; justify-content: center !important; 
             padding: 0 !important; margin: 0 !important;
-            /* 在底欄上方畫一條極細的 10% 透明白線，做為與畫布的視覺分割線 */
             border-top: 1px solid rgba(255,255,255,0.1); 
         }
 
-        /* --- F. 側邊跳轉按鈕 (首頁/末頁按鈕微調) --- */
+        /* --- F. 側邊跳轉按鈕 --- */
         .flipbook-btnFirst, .flipbook-btnLast {
-            background: rgba(0, 0, 0, 0.3) !important; /* 賦予 30% 透明黑的圓形背景，增加在白色書本旁的辨識度 */
-            border-radius: 50% !important; /* 強制變為正圓形 */
-            padding: 10px !important; /* 擴大按鈕可點擊範圍 */
-            margin: 10px 15px !important; /* 將按鈕向內推，避免與外掛自帶的翻頁箭頭靠得太近而誤觸 */
+            background: rgba(0, 0, 0, 0.3) !important; 
+            border-radius: 50% !important; 
+            padding: 10px !important; 
+            margin: 10px 15px !important; 
             position: relative !important; 
-            top: 20px !important; /* 在垂直置中的基礎上，稍微往下微調 20px 達到最佳視覺平衡 */
+            top: 20px !important; 
         }
 
         /* --- G. 全局按鈕統一設定 --- */
-        /* 針對所有功能按鈕的共用樣式 */
         .flipbook-btn {
-            background: none !important; /* 清除所有個別按鈕自帶的背景色 */
-            color: #ffffff !important; /* 強制圖示為白色 */
-            font-size: 20px !important; /* 統一字體圖標的大小，確保點擊舒適度 */
+            background: none !important; 
+            color: #ffffff !important; 
+            font-size: 20px !important; 
         }
     </style>
 </head>
