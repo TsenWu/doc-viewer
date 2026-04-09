@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Way - 溫室氣體盤查報告書 (圖片無廣告阻擋版)</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/flipbook.min.css" />
+    <script src="../js/flipbook.min.js"></script>
+
+    <script type="text/javascript">
+        // 【關鍵修正】：強制告訴外掛，它的其他兄弟模組 (如 webgl.min.js) 住在哪裡
+        // 這樣它就不會因為在子資料夾啟動而迷路了
+        window.FLIPBOOK = window.FLIPBOOK || {};
+        window.FLIPBOOK.corePath = '../js/';
+
+        // 確保網頁所有元素都準備好後，才開始執行翻頁書程式
+        document.addEventListener('DOMContentLoaded', function () {
+            // 指定要裝載電子書的 HTML 區塊
+            const el = document.getElementById('container');
+            
+            // ==========================================
+            // 核心邏輯：自動生成圖片陣列 (取代原本的 PDF)
+            // ==========================================
+            const totalPages = 18; // 【未來修改重點】如果頁數變更，只要改這個數字即可！
+            const bookPages = [];  // 建立一個空的陣列，用來存放每一頁的圖片資料
+            
+            // 使用 for 迴圈，從第 1 頁跑到第 18 頁
+            for (let i = 1; i <= totalPages; i++) {
+                // 自動補零功能：讓數字 1 變成字串 '01'，確保能正確對應到 page_01.jpg 這樣的檔名
+                let pageNum = String(i).padStart(2, '0'); 
+                
+                // 將每一頁的 HTML 結構推入陣列中
+                bookPages.push({
+                    // 改用外掛原生的 src 與 thumb 屬性，不使用 HTML 注入，確保圖片能被正確識別和載入
+                    src: `./pages/page_${pageNum}.jpg`,    // 大圖路徑
+                    thumb: `./pages/page_${pageNum}.jpg`  // 縮圖路徑 (直接拿原圖當縮圖)
+                });
+            }
+
+            // ==========================================
+            // 外掛參數設定區塊
+            // ==========================================
+            const options = {
+                // --- 1. 核心載入 ---
+                pages: bookPages, // 將上面用迴圈做好的圖片陣列，直接餵給外掛 (取代 pdfUrl)
+                
+                // --- 2. 渲染與瀏覽模式 ---
+                // 因為已經不是 PDF，沒有被廣告阻擋器攔截的風險，可以安心開啟 3D 翻頁特效 (webgl)
+                viewMode: 'webgl', 
+                singlePageMode: false, // 電腦版維持雙面展開
+                singlePageModeMobile: true, // 手機版自動切換為單面顯示
+
+                // --- 3. 介面與佈局 ---
+                skin: 'gradient', // 漸層商務風格底色
+                currentPage: { vAlign: 'top', hAlign: 'left' }, // 頁碼在左上角
+                btnFirst: { enabled: true, vAlign: 'center', hAlign: 'left', icon: 'fa-angle-double-left' }, // 左側跳轉首頁鍵
+                btnLast: { enabled: true, vAlign: 'center', hAlign: 'right', icon: 'fa-angle-double-right' }, // 右側跳轉末頁鍵
+
+                // --- 4. 底部工具列配置 ---
+                btnZoomIn:      { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 放大
+                btnZoomOut:     { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 縮小
+                btnThumbs:      { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 縮圖導覽
+                btnShare:       { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 分享網址
+                btnBookmark:    { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 紀錄書籤
+                btnExpand:      { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 全螢幕
+                btnSound:       { enabled: true, vAlign: 'bottom', hAlign: 'center' }, // 翻頁音效
+
+                // 【圖片模式專屬關閉項目】
+                btnToc: { enabled: false }, // 目錄：圖片模式無法自動抓取 PDF 章節，故關閉
+                btnPrint: { enabled: false }, // 列印：避免客戶把排版印亂，故關閉
+                btnDownloadPdf: { enabled: false }, // 下載：已經沒有 PDF 檔案了，故關閉
+                btnDownloadPages: { enabled: false }, // 下載所有圖片：避免版權圖片外流，故關閉
+                
+                // --- 5. 工具列外觀樣式 ---
+                menuMargin: 0,           // 底欄貼齊螢幕邊緣
+                menuTransparent: false,  // 底欄實色不透明
+                menuOverBook: false,     // 書本不被底欄遮擋
+                btnColor: '#FFFFFF',     // 按鈕純白色
+                btnRadius: 0             // 按鈕直角方形設計
+            };
+            
+            // 將設定好的 options 注入到 container 容器中，啟動翻頁書
+            new FlipBook(el, options);
+        });
+    </script>
+
+    <style>
+        /* --- A. 基礎畫布設定 --- */
+        body, html {
+            margin: 0; padding: 0; 
+            overflow: hidden; /* 隱藏瀏覽器原本的滾動條 */
+            background-color: #333 !important; /* 網頁最底層深灰色 */
+            height: 100% !important; 
+        }
+        #container { width: 100%; height: 100vh; }
+        canvas { 
+            display: block !important; 
+            visibility: visible !important; 
+            background-color: #494949 !important; /* 書本後方的空間設定為較淺的灰色，增加立體感 */
+        }
+
+        /* --- B. 頂部中央 Logo 區塊 --- */
+        .top-center-logo {
+            position: absolute; 
+            top: 15px; 
+            left: 50%; 
+            transform: translateX(-50%); /* 精準水平置中 */
+            background-color: rgba(0, 0, 0, 0.7); /* 半透明黑底框 */
+            padding: 6px 20px; 
+            border-radius: 4px; 
+            z-index: 150; /* 確保 Logo 浮在書本最上層 */
+            pointer-events: none; /* 讓滑鼠點擊穿透，不會妨礙翻頁動作 */
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .top-center-logo img { height: 22px; display: block; }
+
+        /* --- C. 手機版 RWD 微調 --- */
+        @media (max-width: 768px) {
+            .top-center-logo { top: 10px; padding: 4px 15px; } 
+            .top-center-logo img { height: 16px; } 
+        }
+
+        /* --- D. 左上角頁碼標籤 --- */
+        .flipbook-currentPage {
+            background-color: rgba(0, 0, 0, 0.7) !important; 
+            color: #ffffff !important; 
+            padding: 6px 15px !important;
+            border-radius: 4px !important;
+            top: 15px !important; 
+            left: 15px !important;
+            font-family: Arial, sans-serif !important; 
+            font-size: 14px !important;
+            z-index: 100 !important;
+        }
+
+        /* --- E. 底部漸層工具列 --- */
+        .flipbook-menu-bottom {
+            background: linear-gradient(to top, rgba(40,40,40,0.8) 0%, rgba(0,0,0,1) 100%) !important;
+            height: 60px !important; 
+            width: 100% !important; 
+            left: 0 !important;
+            display: flex !important; align-items: center !important; justify-content: center !important; 
+            padding: 0 !important; margin: 0 !important;
+            border-top: 1px solid rgba(255,255,255,0.1); /* 頂部微光白線，增加質感 */
+        }
+
+        /* --- F. 側邊跳轉按鈕 (首末頁) --- */
+        .flipbook-btnFirst, .flipbook-btnLast {
+            background: rgba(0, 0, 0, 0.3) !important; /* 半透明圓底 */
+            border-radius: 50% !important; 
+            padding: 10px !important; 
+            margin: 10px 15px !important; 
+            position: relative !important; 
+            top: 20px !important; /* 視覺微調下移 */
+        }
+
+        /* --- G. 全局按鈕圖示 --- */
+        .flipbook-btn {
+            background: none !important; 
+            color: #ffffff !important; 
+            font-size: 20px !important; 
+        }
+    </style>
+</head>
+<body>
+    <div class="top-center-logo">
+        <img src="./GW_logo_W.png" alt="Golden Way Logo">
+    </div>
+    
+    <div id="container"></div>
+</body>
+</html>
