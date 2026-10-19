@@ -1,321 +1,334 @@
 <div id="GW-01-GWJP日本型錄線上翻閱-Root" role="region" aria-labelledby="GW-01-GWJP日本型錄線上翻閱-Title">
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
 
-/* =========================================================================
-   GW-01-GWJP日本型錄線上翻閱 - 核心防禦與排版鎖定 (金鍏官網小幫手 V1.6 尊榮版)
+    /* =========================================================================
+   GW-01-GWJP日本型錄線上翻閱 - 核心防禦與排版鎖定 (金鍏官網小幫手 V1.7 尊榮版)
    ========================================================================= */
-#GW-01-GWJP日本型錄線上翻閱-Root {
-  --iframe-min-desktop: 800px;
-  --iframe-min-tablet: 750px;
-  --iframe-min-mobile: 600px;
-  --gw-blue: #0284c7;
-  --gw-blue-dark: #0369a1;
-  --gw-blue-hover: #0ea5e9;
-  --gw-text-dark: #0f172a;
-  --gw-text-body: #334155;
-  --gw-text-muted: #64748b;
-  --gw-bg-card: #ffffff;
-  --gw-border: #e2e8f0;
+    #GW-01-GWJP日本型錄線上翻閱-Root {
+      --iframe-min-desktop: 800px;
+      --iframe-min-tablet: 750px;
+      --iframe-min-mobile: 600px;
+      --gw-blue: #0284c7;
+      --gw-blue-dark: #0369a1;
+      --gw-blue-hover: #0ea5e9;
+      --gw-text-dark: #0f172a;
+      --gw-text-body: #334155;
+      --gw-text-muted: #64748b;
+      --gw-bg-card: #ffffff;
+      --gw-border: #e2e8f0;
 
-  position: relative !important;
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 30px 15px !important;
-  box-sizing: border-box !important;
-  font-family: 'Outfit', 'Noto Sans JP', 'Noto Sans TC', -apple-system, sans-serif !important;
-  background-color: transparent !important;
-}
+      position: relative !important;
+      width: 100% !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 30px 15px !important;
+      box-sizing: border-box !important;
+      font-family: 'Outfit', 'Noto Sans JP', 'Noto Sans TC', -apple-system, sans-serif !important;
+      background-color: transparent !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root *,
-#GW-01-GWJP日本型錄線上翻閱-Root *::before,
-#GW-01-GWJP日本型錄線上翻閱-Root *::after {
-  box-sizing: border-box !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root *,
+    #GW-01-GWJP日本型錄線上翻閱-Root *::before,
+    #GW-01-GWJP日本型錄線上翻閱-Root *::after {
+      box-sizing: border-box !important;
+    }
 
-/* 文字防污染鎖定 */
-#GW-01-GWJP日本型錄線上翻閱-Root p,
-#GW-01-GWJP日本型錄線上翻閱-Root span,
-#GW-01-GWJP日本型錄線上翻閱-Root a,
-#GW-01-GWJP日本型錄線上翻閱-Root h2,
-#GW-01-GWJP日本型錄線上翻閱-Root h3 {
-  line-height: 1.6 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-decoration: none !important;
-}
+    /* 文字防污染鎖定 */
+    #GW-01-GWJP日本型錄線上翻閱-Root p,
+    #GW-01-GWJP日本型錄線上翻閱-Root span,
+    #GW-01-GWJP日本型錄線上翻閱-Root a,
+    #GW-01-GWJP日本型錄線上翻閱-Root h2,
+    #GW-01-GWJP日本型錄線上翻閱-Root h3 {
+      line-height: 1.6 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-decoration: none !important;
+    }
 
-/* 頂部引導資訊卡片 - 工業精品微漸層與左側飾條 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-header-box {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
-  border: 1px solid var(--gw-border) !important;
-  border-left: 4px solid var(--gw-blue) !important;
-  border-radius: 12px !important;
-  padding: 24px 28px !important;
-  margin-bottom: 24px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
-}
+    /* 頂部引導資訊卡片 - 工業精品微漸層與左側飾條 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-header-box {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+      border: 1px solid var(--gw-border) !important;
+      border-left: 4px solid var(--gw-blue) !important;
+      border-radius: 12px !important;
+      padding: 24px 28px !important;
+      margin-bottom: 24px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
+    }
 
-/* 標籤列 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-tag-row {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex-wrap: wrap !important;
-}
+    /* 標籤列 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-tag-row {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      flex-wrap: wrap !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-badge {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  padding: 4px 10px !important;
-  border-radius: 6px !important;
-  font-size: 12.5px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.02em !important;
-  background-color: #f0f9ff !important;
-  color: var(--gw-blue-dark) !important;
-  border: 1px solid #bae6fd !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      padding: 4px 10px !important;
+      border-radius: 6px !important;
+      font-size: 12.5px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.02em !important;
+      background-color: #f0f9ff !important;
+      color: var(--gw-blue-dark) !important;
+      border: 1px solid #bae6fd !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-badge-sub {
-  background-color: #f1f5f9 !important;
-  color: #475569 !important;
-  border-color: #e2e8f0 !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-badge-sub {
+      background-color: #f1f5f9 !important;
+      color: #475569 !important;
+      border-color: #e2e8f0 !important;
+    }
 
-/* 標題與下載按鈕列 (桌面版並列) */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-title-action-row {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 20px !important;
-  flex-wrap: wrap !important;
-}
+    /* 標題設定 */
+    #GW-01-GWJP日本型錄線上翻閱-Root h2#GW-01-GWJP日本型錄線上翻閱-Title {
+      font-size: 22px !important;
+      font-weight: 700 !important;
+      color: var(--gw-text-dark) !important;
+      letter-spacing: -0.01em !important;
+      line-height: 1.4 !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root h2#GW-01-GWJP日本型錄線上翻閱-Title {
-  font-size: 22px !important;
-  font-weight: 700 !important;
-  color: var(--gw-text-dark) !important;
-  letter-spacing: -0.01em !important;
-  flex: 1 1 500px !important;
-}
+    /* 下載動作按鈕列（標題下方） */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-action-row {
+      display: flex !important;
+      align-items: center !important;
+    }
 
-/* 高質感 PDF 下載按鈕 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 9px !important;
-  padding: 10px 20px !important;
-  border-radius: 8px !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease-in-out !important;
-  white-space: nowrap !important;
-  flex-shrink: 0 !important;
-}
+    /* 高質感 PDF 下載按鈕 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 9px 18px !important;
+      border-radius: 8px !important;
+      font-size: 13.5px !important;
+      font-weight: 600 !important;
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25) !important;
+      transition: all 0.2s ease !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download:hover {
-  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
-  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
-  transform: translateY(-1px) !important;
-  color: #ffffff !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%) !important;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+      transform: translateY(-1px) !important;
+      color: #ffffff !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download:active {
-  transform: translateY(0) !important;
-  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25) !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download:active {
+      transform: translateY(0) !important;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25) !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download svg {
-  width: 17px !important;
-  height: 17px !important;
-  fill: currentColor !important;
-  flex-shrink: 0 !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download svg {
+      width: 16px !important;
+      height: 16px !important;
+      fill: currentColor !important;
+      flex-shrink: 0 !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-size {
-  font-size: 11.5px !important;
-  font-weight: 500 !important;
-  opacity: 0.85 !important;
-  padding-left: 2px !important;
-}
+    /* 專業日文介紹文 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-desc {
+      font-size: 14.5px !important;
+      line-height: 1.75 !important;
+      color: var(--gw-text-body) !important;
+      letter-spacing: 0.015em !important;
+    }
 
-/* 專業日文介紹文 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-desc {
-  font-size: 14.5px !important;
-  line-height: 1.75 !important;
-  color: var(--gw-text-body) !important;
-  letter-spacing: 0.015em !important;
-}
+    /* 快速操作功能提示小列 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-feature-chips {
+      display: flex !important;
+      align-items: center !important;
+      gap: 16px !important;
+      padding-top: 8px !important;
+      border-top: 1px dashed #e2e8f0 !important;
+      flex-wrap: wrap !important;
+    }
 
-/* 快速操作功能提示小列 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-feature-chips {
-  display: flex !important;
-  align-items: center !important;
-  gap: 16px !important;
-  padding-top: 8px !important;
-  border-top: 1px dashed #e2e8f0 !important;
-  flex-wrap: wrap !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-chip-item {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      font-size: 12.5px !important;
+      color: var(--gw-text-muted) !important;
+      font-weight: 500 !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-chip-item {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  font-size: 12.5px !important;
-  color: var(--gw-text-muted) !important;
-  font-weight: 500 !important;
-}
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-chip-item svg {
+      width: 14px !important;
+      height: 14px !important;
+      fill: #0284c7 !important;
+      opacity: 0.9 !important;
+    }
 
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-chip-item svg {
-  width: 14px !important;
-  height: 14px !important;
-  fill: #0284c7 !important;
-  opacity: 0.9 !important;
-}
+    /* 螢幕閱讀器與搜尋引擎無障礙摘要層 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
 
-/* 螢幕閱讀器與搜尋引擎無障礙摘要層 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
+    /* Iframe 3D 電子書外框容器 */
+    #GW-01-GWJP日本型錄線上翻閱-Root .gw-iframe-wrap {
+      width: 100% !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12) !important;
+      background-color: #333333 !important;
+    }
 
-/* Iframe 3D 電子書外框容器 */
-#GW-01-GWJP日本型錄線上翻閱-Root .gw-iframe-wrap {
-  width: 100% !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12) !important;
-  background-color: #333333 !important;
-}
+    /* Iframe 本體 */
+    #GW-01-GWJP日本型錄線上翻閱-Root iframe {
+      width: 100% !important;
+      border: none !important;
+      display: block !important;
+      min-height: var(--iframe-min-desktop) !important;
+    }
 
-/* Iframe 本體 */
-#GW-01-GWJP日本型錄線上翻閱-Root iframe {
-  width: 100% !important;
-  border: none !important;
-  display: block !important;
-  min-height: var(--iframe-min-desktop) !important;
-}
+    /* 響應式斷點 (RWD) */
+    @media (max-width: 1023px) {
+      #GW-01-GWJP日本型錄線上翻閱-Root iframe {
+        min-height: var(--iframe-min-tablet) !important;
+      }
 
-/* 響應式斷點 (RWD) */
-@media (max-width: 1023px) {
-  #GW-01-GWJP日本型錄線上翻閱-Root iframe { min-height: var(--iframe-min-tablet) !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root { padding: 20px 10px !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root h2#GW-01-GWJP日本型錄線上翻閱-Title { font-size: 19px !important; }
-}
+      #GW-01-GWJP日本型錄線上翻閱-Root {
+        padding: 20px 10px !important;
+      }
 
-@media (max-width: 767px) {
-  #GW-01-GWJP日本型錄線上翻閱-Root iframe { min-height: var(--iframe-min-mobile) !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root { padding: 15px 0 !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root .gw-header-box { padding: 18px 16px !important; border-radius: 8px !important; gap: 14px !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root .gw-title-action-row { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download { width: 100% !important; padding: 12px !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root .gw-iframe-wrap { border-radius: 8px !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root .gw-desc { font-size: 13.5px !important; }
-  #GW-01-GWJP日本型錄線上翻閱-Root .gw-feature-chips { gap: 10px !important; }
-}
-</style>
+      #GW-01-GWJP日本型錄線上翻閱-Root h2#GW-01-GWJP日本型錄線上翻閱-Title {
+        font-size: 19px !important;
+      }
+    }
 
-<div class="gw-header-box">
-  <div class="gw-tag-row">
-    <span class="gw-badge">
-      <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-      日本規格 LED 照明
-    </span>
-    <span class="gw-badge gw-badge-sub">PSE 適合品・業務用総合カタログ</span>
-  </div>
+    @media (max-width: 767px) {
+      #GW-01-GWJP日本型錄線上翻閱-Root iframe {
+        min-height: var(--iframe-min-mobile) !important;
+      }
 
-  <div class="gw-title-action-row">
+      #GW-01-GWJP日本型錄線上翻閱-Root {
+        padding: 15px 0 !important;
+      }
+
+      #GW-01-GWJP日本型錄線上翻閱-Root .gw-header-box {
+        padding: 18px 16px !important;
+        border-radius: 8px !important;
+        gap: 14px !important;
+      }
+
+      #GW-01-GWJP日本型錄線上翻閱-Root .gw-btn-download {
+        width: 100% !important;
+        padding: 11px !important;
+      }
+
+      #GW-01-GWJP日本型錄線上翻閱-Root .gw-iframe-wrap {
+        border-radius: 8px !important;
+      }
+
+      #GW-01-GWJP日本型錄線上翻閱-Root .gw-desc {
+        font-size: 13.5px !important;
+      }
+
+      #GW-01-GWJP日本型錄線上翻閱-Root .gw-feature-chips {
+        gap: 10px !important;
+      }
+    }
+  </style>
+
+  <div class="gw-header-box">
+    <div class="gw-tag-row">
+      <span class="gw-badge">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" />
+        </svg>
+        日本規格 LED 照明
+      </span>
+      <span class="gw-badge gw-badge-sub">PSE 適合品・業務用総合カタログ</span>
+    </div>
+
     <h2 id="GW-01-GWJP日本型錄線上翻閱-Title">金鍏電子 Goldenway® - 日本 LED 照明綜合型錄 (総合カタログ)</h2>
-    <a class="gw-btn-download" 
-       href="https://tsenwu.github.io/doc-viewer/GWJP_catalog/LED%E7%94%A2%E5%93%81%E7%B7%8F%E5%90%88%E3%82%AB%E3%82%BF%E3%83%AD%E3%82%AF%E3%82%99-2601015.pdf" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       download="金鍏電子_日本LED照明綜合型錄_総合カタログ.pdf"
-       title="PDF型錄下載 (8.1MB)">
-      <svg viewBox="0 0 24 24">
-        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-      </svg>
-      <span>PDF 型錄下載</span>
-      <span class="gw-btn-size">(8.1MB)</span>
-    </a>
+
+    <div class="gw-action-row">
+      <a class="gw-btn-download"
+        href="https://www.dropbox.com/scl/fi/8ra1v116klly47hz04ppf/LED-2601015.pdf?rlkey=vxe54jletb0fkvo3mr5srftox&dl=0"
+        target="_blank" rel="noopener noreferrer" download="金鍏電子_日本LED照明綜合型錄_総合カタログ.pdf" title="PDF 型錄下載">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z" />
+        </svg>
+        <span>PDF 型錄下載</span>
+      </a>
+    </div>
+
+    <p class="gw-desc">
+      本カタログは、金鍏電子（Goldenway）の日本仕様 一体型LEDベースライト、高天井用LED照明、防湿・防塵投光器、道路・街路灯、および高効率PSE認証LED電源ユニットを網羅した総合カタログです。画面上で直接 3D
+      ページめくり、拡大縮小、全画面表示にて各製品の詳細仕様をご確認いただけます。
+    </p>
+
+    <div class="gw-feature-chips">
+      <span class="gw-chip-item">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+        </svg>
+        ページめくり（翻頁瀏覽）
+      </span>
+      <span class="gw-chip-item">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z" />
+        </svg>
+        拡大表示（放大檢視）
+      </span>
+      <span class="gw-chip-item">
+        <svg viewBox="0 0 24 24">
+          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+        </svg>
+        全画面表示（全螢幕切換）
+      </span>
+      <span class="gw-chip-item">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+          <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+          <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+          <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        </svg>
+        ページ一覧（頁面總覽）
+      </span>
+    </div>
   </div>
 
-  <p class="gw-desc">
-    本カタログは、金鍏電子（Goldenway）の日本仕様 一体型LEDベースライト、高天井用LED照明、防湿・防塵投光器、道路・街路灯、および高効率PSE認証LED電源ユニットを網羅した総合カタログです。画面上で直接 3D ページめくり、拡大縮小、全画面表示にて各製品の詳細仕様をご確認いただけます。
-  </p>
-
-  <div class="gw-feature-chips">
-    <span class="gw-chip-item">
-      <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-      ページめくり（翻頁瀏覽）
-    </span>
-    <span class="gw-chip-item">
-      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
-      拡大表示（放大檢視）
-    </span>
-    <span class="gw-chip-item">
-      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-      全画面表示（全螢幕切換）
-    </span>
+  <div class="gw-sr-only">
+    <h3>金鍏電子股份有限公司 (Golden Way Electronics Corp., Ltd.) 產品範疇摘要</h3>
+    <p>專注商用與工業 LED 照明自主研發與製造，涵蓋：辦公室/學校/商業大樓直付型與吊下型 LED 吸頂燈板燈 (BL 系列)、一體型方型嵌燈 (LL 系列)、鹽水噴霧 1000 小時合格高天井燈與投光燈 (HBL / RL
+      系列)、防濕型 IP66 工業照明，以及具備 PSE 認證之 LED 直流電源裝置 (JP / JS / JB / GS / PC / KV 系列)。</p>
   </div>
-</div>
 
-<div class="gw-sr-only">
-  <h3>金鍏電子股份有限公司 (Golden Way Electronics Corp., Ltd.) 產品範疇摘要</h3>
-  <p>專注商用與工業 LED 照明自主研發與製造，涵蓋：辦公室/學校/商業大樓直付型與吊下型 LED 吸頂燈板燈 (BL 系列)、一體型方型嵌燈 (LL 系列)、鹽水噴霧 1000 小時合格高天井燈與投光燈 (HBL / RL 系列)、防濕型 IP66 工業照明，以及具備 PSE 認證之 LED 直流電源裝置 (JP / JS / JB / GS / PC / KV 系列)。</p>
-</div>
-
-<div class="gw-iframe-wrap">
-  <iframe 
-    src="https://tsenwu.github.io/doc-viewer/GWJP_catalog/index-img.html" 
-    title="金鍏電子 Goldenway - 日本 LED 照明綜合型錄線上 3D 翻閱 (総合カタログ)" 
-    scrolling="auto" 
-    loading="lazy" 
-    allowfullscreen="true" 
-    webkitallowfullscreen="true" 
-    mozallowfullscreen="true">
-  </iframe>
-</div>
-</div>� (総合カタログ)</h2>
-  <p class="gw-desc">
-    收錄金鍏電子日本規格一體化 LED 基礎照明、高天井照明、防濕防塵投光燈、道路街路燈與高效定電流/定電壓電源裝置。點擊下方視窗可直接進行 3D 翻頁、放大檢視規格細節或切換全螢幕閱讀。
-  </p>
-</div>
-
-<div class="gw-sr-only">
-  <h3>金鍏電子股份有限公司 (Golden Way Electronics Corp., Ltd.) 產品範疇摘要</h3>
-  <p>專注商用與工業 LED 照明自主研發與製造，涵蓋：辦公室/學校/商業大樓直付型與吊下型 LED 吸頂燈板燈 (BL 系列)、一體型方型嵌燈 (LL 系列)、鹽水噴霧 1000 小時合格高天井燈與投光燈 (HBL / RL 系列)、防濕型 IP66 工業照明，以及具備 PSE 認證之 LED 直流電源裝置 (JP / JS / JB / GS / PC / KV 系列)。</p>
-</div>
-
-<div class="gw-iframe-wrap">
-  <iframe 
-    src="https://tsenwu.github.io/doc-viewer/GWJP_catalog/index-img.html" 
-    title="金鍏電子 Goldenway - 日本 LED 照明綜合型錄線上 3D 翻閱 (総合カタログ)" 
-    scrolling="auto" 
-    loading="lazy"
-    allowfullscreen="true" 
-    webkitallowfullscreen="true" 
-    mozallowfullscreen="true">
-  </iframe>
-</div>
+  <div class="gw-iframe-wrap">
+    <iframe src="https://tsenwu.github.io/doc-viewer/GWJP_catalog/index-img.html"
+      title="金鍏電子 Goldenway - 日本 LED 照明綜合型錄線上 3D 翻閱 (総合カタログ)" scrolling="auto" loading="lazy" allowfullscreen="true"
+      webkitallowfullscreen="true" mozallowfullscreen="true">
+    </iframe>
+  </div>
 </div>
